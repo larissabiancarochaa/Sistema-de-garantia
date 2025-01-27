@@ -1,0 +1,52 @@
+Estrutura MVVM.
+
+---------- Assets
+|               -Css
+|               -Images 
+|               -Js
+---------- Files
+|---------- GarantiasGeradas
+|------------{ID + numero da garantia}
+|               -Arquivo gerado
+---------- Model
+|           -AuthModel.php
+|           -BuscarCompradorModel.php
+|           -BuscarGarantiaModel.php
+|           -CadastrarGarantiaView.php
+|           -CadastrarUsuarioModel.php 
+|           -Database.php
+|           -EditarGarantiaModel.php
+|           -ListarGarantiaModel.php
+|           -EditarUsuarioModel.php
+|           -ListarUsuariosModel.php    
+---------- Routes
+|           -Routes.php
+---------- Vendor
+---------- Utils
+|           -PDFGenerator.php
+---------- View
+|           -BuscarCompradorView.php
+|           -BuscarGarantiaView.php
+|           -CadastrarGarantiaView.php
+|           -CadastrarUsuarioView.php
+|           -Dashboard.php
+|           -EditarGarantiaView.php
+|           -EditarUsuarioView.php
+|           -ListarGarantiaView.php
+|           -ListarUsuariosView.php
+|           -Login.php
+--------- ViweModel  
+|           -BuscarCompradorViewModel.php
+|           -BuscarGarantiaViewModel.php
+|           -CadastrarGarantiaView.php
+|           -CadastrarUsuarioViewModel.php
+|           -EditarGarantiaViewModel.php
+|           -ListarGarantiaViewModel.php
+|           -EditarUsuarioViewModel.php
+|           -ListarUsuariosViewModel
+|           -LoginViewModel.php
+|           -logout.php
+composer.json
+composer.lock
+index.php 
+.htaccess

@@ -1,0 +1,75 @@
+RewriteEngine On
+RewriteBase /originalpiscinas/sistema/
+
+# Desabilitar cache para todos os recursos
+<IfModule mod_headers.c>
+    Header set Cache-Control "no-store, no-cache, must-revalidate, max-age=0"
+    Header set Pragma "no-cache"
+    Header set Expires "Thu, 01 Jan 1970 00:00:00 GMT"
+</IfModule>
+
+# Adiciona barra no final, exceto em arquivos com extensões específicas
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_URI} !(.*)\.(pdf|png|jpeg|jpg)$
+RewriteCond %{REQUEST_URI} !(.*)/$
+RewriteRule ^(.*)$ /originalpiscinas/sistema/$1/ [R=301,L]
+
+# Remove barra no final se for uma extensão de arquivo
+RewriteCond %{REQUEST_URI} \.(pdf|png|jpeg|jpg)/$
+RewriteRule ^(.*)/$ /originalpiscinas/sistema/$1 [R=301,L]
+
+# Redireciona "login/" para "View/Login.php"
+RewriteRule ^login/$ View/Login.php [L]
+
+# Redireciona "garantia/" para "View/Login.php?garantia=true"
+RewriteRule ^garantia/$ View/Login.php?garantia=true [L]
+
+# Redireciona "consultargarantia/" para "View/Dashboard.php?usuario=garantia"
+RewriteRule ^consultargarantia/$ View/Dashboard.php?usuario=garantia [L]
+
+# Redireciona "adm/" para "View/Dashboard.php?usuario=adm"
+RewriteRule ^adm/$ View/Dashboard.php?usuario=adm [L]
+
+# Redireciona "licenciado/" para "View/Dashboard.php?usuario=licenciado"
+RewriteRule ^licenciado/$ View/Dashboard.php?usuario=licenciado [L]
+
+# Redireciona "cadastrarusuario/" para "View/CadastrarUsuarioView.php"
+RewriteRule ^cadastrarusuario/$ View/CadastrarUsuarioView.php [L]
+
+# Redireciona "listarusuarios/" para "View/ListarUsuariosView.php"
+RewriteRule ^listarusuarios/$ View/ListarUsuariosView.php [L]
+
+# Redireciona "editarusuario" para "View/EditarUsuarioView.php"
+# Sem parâmetro "id"
+RewriteRule ^editarusuario/$ View/EditarUsuarioView.php [L]
+
+# Com parâmetro "id"
+RewriteCond %{QUERY_STRING} (^|&)id=\d+(&|$) [NC]
+RewriteRule ^editarusuario/$ View/EditarUsuarioView.php [L,QSA]
+
+# Redireciona "buscarusuario/" para "View/BuscarCompradorView.php"
+RewriteRule ^buscarusuario/$ View/BuscarCompradorView.php [L]
+
+# Redireciona "cadastrargarantia/" para "View/CadastrarGarantiaView.php"
+RewriteRule ^cadastrargarantia/$ View/CadastrarGarantiaView.php [L]
+
+# Redireciona "listargarantias/" para "View/ListarGarantiaView.php"
+RewriteRule ^listargarantias/$ View/ListarGarantiaView.php [L]
+
+# Redireciona "editargarantia" para "View/EditarGrantiaView.php"
+# Sem parâmetro "id"
+RewriteRule ^editargarantia/$ View/EditarGarantiaView.php [L]
+
+# Com parâmetro "id"
+RewriteCond %{QUERY_STRING} (^|&)id=\d+(&|$) [NC]
+RewriteRule ^editargarantia/$ View/EditarGarantiaView.php [L,QSA]
+
+# Redireciona "buscargarantia/" para "View/BuscarGarantiaView.php"
+RewriteRule ^buscargarantia/$ View/BuscarGarantiaView.php [L]
+
+# Redireciona "pdfgarantia/" para "Files/GarantiasGeradas/"
+RewriteRule ^pdfgarantia/$ Files/GarantiasGeradas/ [L]
+
+# Permite a URL específica com ID e número da garantia, sem barra após a extensão de arquivo
+RewriteRule ^pdfgarantia/(\d+)/garantia_original_piscinas_(\d+)\.(pdf|png|jpeg|jpg)$ Files/GarantiasGeradas/$1/garantia_original_piscinas_$2.$3 [L] 
